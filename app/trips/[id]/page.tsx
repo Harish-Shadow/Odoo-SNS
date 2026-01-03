@@ -1,19 +1,30 @@
-export default function TripOverviewPage() {
+import Link from "next/link";
+
+export default async function TripOverviewPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-2">Europe Trip</h1>
-      <p className="text-gray-600 mb-6">10 Jun – 25 Jun</p>
+      <h1 className="text-2xl font-semibold mb-2 text-foreground">Europe Trip</h1>
+      <p className="text-muted-foreground mb-6">10 Jun – 25 Jun</p>
 
-      <div className="flex gap-4">
-        <a href="itinerary" className="underline text-blue-600">
+      <div className="flex flex-wrap gap-4">
+        <Link href={`/trips/${id}/itinerary`} className="px-6 py-3 rounded-lg bg-card text-card-foreground border border-border hover:border-primary transition-all text-center font-medium shadow-sm hover:shadow-md">
           Itinerary
-        </a>
-        <a href="view" className="underline text-blue-600">
+        </Link>
+        <Link href={`/trips/${id}/view`} className="px-6 py-3 rounded-lg bg-card text-card-foreground border border-border hover:border-primary transition-all text-center font-medium shadow-sm hover:shadow-md">
           View
-        </a>
-        <a href="budget" className="underline text-blue-600">
+        </Link>
+        <Link href={`/trips/${id}/budget`} className="px-6 py-3 rounded-lg bg-card text-card-foreground border border-border hover:border-primary transition-all text-center font-medium shadow-sm hover:shadow-md">
           Budget
-        </a>
+        </Link>
+        <Link href={`/trips/${id}/activities`} className="px-6 py-3 rounded-lg bg-card text-card-foreground border border-border hover:border-primary transition-all text-center font-medium shadow-sm hover:shadow-md">
+          Activities
+        </Link>
       </div>
     </div>
   );

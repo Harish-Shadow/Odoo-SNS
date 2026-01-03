@@ -1,44 +1,54 @@
 "use client";
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function SignupForm() {
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Simulate signup
+    router.push('/dashboard');
+  };
+
   return (
-    <form className="space-y-4">
+    <form className="space-y-4" onSubmit={handleSubmit}>
       <div>
-        <label className="block text-sm font-medium mb-1">
+        <label className="block text-sm font-medium mb-1 text-foreground">
           Full Name
         </label>
         <input
           type="text"
           placeholder="John Doe"
-          className="w-full border px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-black"
+          className="w-full bg-secondary border border-border text-foreground px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all placeholder:text-muted/50"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-1">
+        <label className="block text-sm font-medium mb-1 text-foreground">
           Email
         </label>
         <input
           type="email"
           placeholder="you@example.com"
-          className="w-full border px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-black"
+          className="w-full bg-secondary border border-border text-foreground px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all placeholder:text-muted/50"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-1">
+        <label className="block text-sm font-medium mb-1 text-foreground">
           Password
         </label>
         <input
           type="password"
           placeholder="Create a strong password"
-          className="w-full border px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-black"
+          className="w-full bg-secondary border border-border text-foreground px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all placeholder:text-muted/50"
         />
       </div>
 
       <button
         type="submit"
-        className="w-full bg-black text-white py-2 rounded text-lg hover:opacity-90"
+        className="w-full bg-primary text-primary-foreground font-semibold py-3 rounded-lg text-lg hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20"
       >
         Sign Up
       </button>

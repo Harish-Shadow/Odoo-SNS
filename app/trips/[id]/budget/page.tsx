@@ -1,14 +1,23 @@
 export default function BudgetPage() {
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-4">Budget</h1>
+      <h1 className="text-2xl font-semibold mb-4 text-foreground">Budget</h1>
 
-      <p className="mb-4">Total Estimated Cost: ₹80,000</p>
+      <p className="mb-4 text-xl font-medium text-primary">Total Estimated Cost: ₹80,000</p>
 
       <ul className="space-y-2">
-        <li>Flights: ₹30,000</li>
-        <li>Stay: ₹35,000</li>
-        <li>Activities: ₹15,000</li>
+        <li className="border border-border p-3 rounded bg-card text-card-foreground flex justify-between">
+          <span>Flights</span>
+          <span>₹30,000</span>
+        </li>
+        <li className="border border-border p-3 rounded bg-card text-card-foreground flex justify-between">
+          <span>Stay</span>
+          <span>₹35,000</span>
+        </li>
+        <li className="border border-border p-3 rounded bg-card text-card-foreground flex justify-between">
+          <span>Activities</span>
+          <span>₹15,000</span>
+        </li>
       </ul>
     </div>
   );

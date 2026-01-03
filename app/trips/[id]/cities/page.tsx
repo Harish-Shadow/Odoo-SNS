@@ -1,15 +1,15 @@
 export default function CitiesPage() {
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-4">
+      <h1 className="text-2xl font-semibold mb-4 text-foreground">
         Cities
       </h1>
 
       <ul className="space-y-3">
-        <li className="border p-3 rounded bg-white">
+        <li className="border border-border p-3 rounded bg-card text-card-foreground">
           Paris, France
         </li>
-        <li className="border p-3 rounded bg-white">
+        <li className="border border-border p-3 rounded bg-card text-card-foreground">
           Rome, Italy
         </li>
       </ul>
