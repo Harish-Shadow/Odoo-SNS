@@ -1,51 +1,140 @@
 "use client";
 
-export default function ProfileCard() {
-  return (
-    <div className="group relative bg-card border border-border rounded-2xl p-8 shadow-2xl shadow-primary/5 hover:border-primary/30 transition-all overflow-hidden">
-      {/* Glow Effect */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -mr-10 -mt-10 group-hover:bg-primary/20 transition-all"></div>
+import { useState } from "react";
 
-      {/* Avatar */}
-      <div className="relative flex items-center gap-6 mb-8 z-10">
-        <div className="w-20 h-20 rounded-full bg-secondary border-2 border-primary/20 flex items-center justify-center text-3xl font-bold text-primary shadow-lg shadow-black/50">
-          S
+export default function ProfileCard() {
+  const [isEditing, setIsEditing] = useState(false);
+
+  const [profile, setProfile] = useState({
+    name: "Sunil Kumar",
+    email: "sunil@example.com",
+    role: "Traveler",
+    bio:
+      "Passionate traveler with a deep interest in exploring cultures, landscapes, and local experiences. I enjoy planning detailed itineraries and discovering offbeat destinations.",
+    trips: "12+",
+    countries: "4",
+    travelStyle: "Budget · Cultural · Adventure",
+    memberSince: "2025",
+  });
+
+  const [draft, setDraft] = useState(profile);
+
+  const handleSave = () => {
+    setProfile(draft);
+    setIsEditing(false);
+  };
+
+  const handleCancel = () => {
+    setDraft(profile);
+    setIsEditing(false);
+  };
+
+  return (
+    <div className="relative bg-card border border-border rounded-2xl p-8 shadow-xl max-w-xl">
+      
+      {/* Header */}
+      <div className="flex items-center gap-6 mb-6">
+        <div className="w-24 h-24 rounded-full bg-secondary border-2 border-primary/30 flex items-center justify-center text-4xl font-bold text-primary">
+          {profile.name.charAt(0)}
         </div>
 
-        <div>
-          <h2 className="text-2xl font-bold text-foreground">Sunil Kumar</h2>
-          <p className="text-primary font-medium">sunil@example.com</p>
+        <div className="flex-1">
+          {isEditing ? (
+            <input
+              value={draft.name}
+              onChange={(e) =>
+                setDraft({ ...draft, name: e.target.value })
+              }
+              className="text-2xl font-bold bg-transparent border-b border-border focus:outline-none w-full"
+            />
+          ) : (
+            <h2 className="text-3xl font-bold">{profile.name}</h2>
+          )}
+
+          <p className="text-primary text-sm">{profile.email}</p>
         </div>
       </div>
 
-      {/* Info */}
-      <div className="space-y-4 text-sm relative z-10">
-        <div className="flex justify-between items-center p-4 rounded-xl bg-secondary/30 border border-border/50">
-          <span className="text-muted">Role</span>
-          <span className="font-semibold text-foreground">Traveler</span>
-        </div>
+      {/* About */}
+      <div className="mb-6">
+        <h3 className="font-semibold mb-2">About</h3>
 
-        <div className="flex justify-between items-center p-4 rounded-xl bg-secondary/30 border border-border/50">
-          <span className="text-muted">Trips Planned</span>
-          <span className="font-semibold text-foreground">3</span>
-        </div>
+        {isEditing ? (
+          <textarea
+            value={draft.bio}
+            onChange={(e) =>
+              setDraft({ ...draft, bio: e.target.value })
+            }
+            rows={4}
+            className="w-full bg-secondary border border-border rounded-lg p-3 focus:outline-none"
+          />
+        ) : (
+          <p className="text-sm text-muted leading-relaxed">
+            {profile.bio}
+          </p>
+        )}
+      </div>
 
-        <div className="flex justify-between items-center p-4 rounded-xl bg-secondary/30 border border-border/50">
-          <span className="text-muted">Member Since</span>
-          <span className="font-semibold text-foreground">2025</span>
-        </div>
+      {/* Info Blocks */}
+      <div className="space-y-3 text-sm">
+        <InfoRow label="Role" value={profile.role} />
+        <InfoRow label="Trips Planned" value={profile.trips} />
+        <InfoRow label="Countries Visited" value={profile.countries} />
+        <InfoRow label="Travel Style" value={profile.travelStyle} />
+        <InfoRow label="Member Since" value={profile.memberSince} />
       </div>
 
       {/* Actions */}
-      <div className="mt-8 flex gap-4 relative z-10">
-        <button className="flex-1 px-4 py-3 rounded-xl border border-border bg-card text-foreground font-medium hover:border-primary hover:text-primary transition-all hover:shadow-lg hover:shadow-primary/5">
-          Edit Profile
-        </button>
+      <div className="mt-8 flex gap-4">
+        {isEditing ? (
+          <>
+            <button
+              onClick={handleSave}
+              className="flex-1 bg-primary text-primary-foreground py-3 rounded-xl font-medium"
+            >
+              Save Changes
+            </button>
 
-        <button className="flex-1 px-4 py-3 rounded-xl bg-rose-500/10 text-rose-500 font-medium hover:bg-rose-500 hover:text-white transition-all border border-transparent hover:border-rose-500">
-          Logout
-        </button>
+            <button
+              onClick={handleCancel}
+              className="flex-1 border border-border py-3 rounded-xl"
+            >
+              Cancel
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              onClick={() => setIsEditing(true)}
+              className="flex-1 border border-border py-3 rounded-xl hover:border-primary hover:text-primary transition"
+            >
+              Edit Profile
+            </button>
+
+            <button
+              className="flex-1 bg-rose-500/10 text-rose-500 py-3 rounded-xl hover:bg-rose-500 hover:text-white transition"
+            >
+              Logout
+            </button>
+          </>
+        )}
       </div>
+    </div>
+  );
+}
+
+/* Helper */
+function InfoRow({
+  label,
+  value,
+}: {
+  label: string;
+  value: string;
+}) {
+  return (
+    <div className="flex justify-between p-4 rounded-xl bg-secondary/30 border border-border">
+      <span className="text-muted">{label}</span>
+      <span className="font-medium">{value}</span>
     </div>
   );
 }
