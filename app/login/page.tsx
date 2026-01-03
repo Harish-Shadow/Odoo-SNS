@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export default function LoginPage() {
     return (
-        <div className="min-h-screen flex items-center justify-center px-4 font-sans selection:bg-primary/30" style={{backgroundImage: "url('/bg.avif')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed'}}>
-            <div className="w-full max-w-md bg-card p-8 rounded-xl shadow-2xl shadow-primary/5 border border-border">
+        <div className="min-h-screen flex items-center justify-center px-4 font-sans selection:bg-primary/30 overflow-y-hidden" style={{backgroundImage: "url('/bg.avif')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed'}}>
+            <div className="w-full max-w-md bg-card p-8 rounded-xl shadow-2xl shadow-primary/5 border border-border overflow-hidden">
                 <h1 className="text-3xl font-bold text-center mb-2 text-foreground">
                     Welcome Back
                 </h1>
