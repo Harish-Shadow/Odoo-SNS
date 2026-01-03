@@ -1,6 +1,6 @@
 export default function ForgotPasswordPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background px-4 font-sans selection:bg-primary/30">
+    <div className="min-h-screen flex items-center justify-center bg-background px-4 font-sans selection:bg-primary/30" style={{backgroundImage: "url('/bg.avif')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed'}}>
       <div className="bg-card p-8 rounded-xl border border-border w-full max-w-md shadow-2xl shadow-primary/5">
         <h1 className="text-2xl font-bold mb-2 text-foreground">
           Forgot Password
